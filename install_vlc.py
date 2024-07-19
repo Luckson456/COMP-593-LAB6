@@ -41,8 +41,8 @@ def get_expected_sha256():
         #split text contents into lines
         
         for line in lines:
-            if 'vlc-3.0.17.4-win64.exe' in line:
-                parts=line.split()
+            if 'vlc-3.0.17.4-win64.exe' in line:  #check weather the statement is present in the line or not
+                parts=line.split()  #split the part of line from vlc-3.0.17.4-win64.exe
                 return parts[0]
     
     # Hint: See example code in lab instructions entitled "Extracting Text from a Response Message Body"
@@ -60,7 +60,7 @@ def download_installer():
     resp_msg=requests.get(url)
     
     if resp_msg.status_code==requests.codes.ok:
-        return resp_msg.content
+        return resp_msg.content   # extract text file from resp msg
     # Hint: See example code in lab instructions entitled "Downloading a Binary File"
     return None
 
@@ -94,8 +94,8 @@ def save_installer(installer_data):
     # TODO: Step 4
     dir_path=os.path.join(r"C:\Users\lucks\OneDrive\Pictures\COMP-593-LAB6")
     # Hint: See example code in lab instructions entitled "Downloading a Binary File"
-    with open(dir_path,'wb') as  file:
-        file.write(installer_data)
+    with open(dir_path,'wb') as  file:   #open dir_path or the location where to save the installed vlc
+        file.write(installer_data)  #overwrite the  file  from installer_data
     
     return dir_path
 
@@ -106,7 +106,7 @@ def run_installer(installer_path):
         installer_path (str): Full path of the VLC installer file
     """    
     # TODO: Step 5
-    subprocess.run([installer_path,'/L=1033','/S'],check=True)
+    subprocess.run([installer_path,'/L=1033','/S'],check=True)    #run  the installer 
     # Hint: See example code in lab instructions entitled "Running the VLC Installer"
     
 def delete_installer(installer_path):
@@ -117,7 +117,7 @@ def delete_installer(installer_path):
     Args:
         installer_path (str): Full path of the VLC installer file
     """
-    os.remove(installer_path)
+    os.remove(installer_path)  # remove the installer from the file
 
 
 if __name__ == '__main__':
